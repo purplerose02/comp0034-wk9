@@ -19,8 +19,8 @@
 
 There are two versions of the activities. You can complete both, or just the version for the framework you intend to use for coursework 2.
 
-1. [Dash activities](activities/2-dash)
-2. [Flask activities](activities/2-flask)
+1. [Dash activities](activities/2-dash.md)
+2. [Flask activities](activities/2-flask.md)
 
 ## Running the apps in the src directory
 
