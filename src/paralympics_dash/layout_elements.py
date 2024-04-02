@@ -1,7 +1,7 @@
 import dash_bootstrap_components as dbc
 from dash import html, dcc
 
-from paralympics_dash.figures import line_chart, bar_gender, scatter_geo
+from figures import line_chart, bar_gender, scatter_geo
 
 # Figures
 map = scatter_geo()
@@ -60,8 +60,4 @@ row_four = dbc.Row([
     dbc.Col(children=[
         dcc.Graph(id="map", figure=map)
     ], width=8, align="start"),
-    dbc.Col(children=[
-        html.Br(),
-        html.Div(id='card'),
-    ], width=4, align="start"),
 ])

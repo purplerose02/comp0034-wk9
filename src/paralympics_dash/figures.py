@@ -148,7 +148,7 @@ def scatter_mapbox():
     sql = '''
     SELECT event.id, event.host, event.year, location.lat, location.lon
     FROM event
-    JOIN location ON event.host = location.city 
+    JOIN location ON event.host = location.city
     '''
 
     df_locs = pd.read_sql(sql=sql, con=connection, index_col=None)
@@ -178,7 +178,7 @@ def scatter_geo():
     sql = '''
         SELECT event.id, event.host, event.year, location.lat, location.lon
         FROM event
-        JOIN location ON event.host = location.city 
+        JOIN location ON event.host = location.city
         '''
 
     df_locs = pd.read_sql(sql=sql, con=connection, index_col=None)
@@ -196,46 +196,3 @@ def scatter_geo():
                             )
 
     return fig_px
-
-
-def create_card(event_id):
-    """
-    Generate a card for the event specified by event_id.
-
-    Args:
-        event_id:
-
-    Returns:
-        card: dash boostrap components card for the event
-    """
-
-    # Get the row for the event data
-    df_events = pd.read_csv(event_data)
-    ev = df_events.loc[event_id - 1]
-
-    # Variables for the card contents
-    logo = f'logos/{ev['year']}_{ev['host']}.jpg'
-    dates = f'{ev['start']} to {ev['end']}'
-    host = f'{ev['host']} {ev['year']}'
-    highlights = f'Highlights: {ev['highlights']}'
-    participants = f'{ev['participants']} athletes'
-    events = f'{ev['events']} events'
-    countries = f'{ev['countries']} countries'
-
-    c = dbc.Card([
-        dbc.CardBody(
-            [
-                html.H4(html.Img(src=dash.get_asset_url(logo), width=35, className="me-1")),
-                html.Br(),
-                html.H6(host, className="card-subtitle"),
-                html.H6(dates, className="card-subtitle"),
-                html.P(highlights, className="card-text"),
-                html.P(participants, className="card-text"),
-                html.P(events, className="card-text"),
-                html.P(countries, className="card-text"),
-            ]
-        ),
-    ],
-        style={"width": "18rem"},
-    )
-    return c

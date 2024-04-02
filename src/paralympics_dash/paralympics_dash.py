@@ -1,8 +1,8 @@
 from dash import Dash, Output, Input
 import dash_bootstrap_components as dbc
 
-from paralympics_dash.figures import line_chart, bar_gender_faceted, create_card
-from paralympics_dash.layout_elements import row_one, row_two, row_three, row_four
+from figures import line_chart, bar_gender_faceted
+from layout_elements import row_one, row_two, row_three, row_four
 
 external_stylesheets = [dbc.themes.BOOTSTRAP]
 meta_tags = [
@@ -37,16 +37,6 @@ def update_line_chart(event_type):
     figure = bar_gender_faceted(event_type)
     return figure
 
-
-@app.callback(
-    Output('card', 'children'),
-    Input('map', 'hoverData'),
-)
-def display_card(hover_data):
-    if hover_data is not None:
-        event_id = hover_data['points'][0]['customdata'][0]
-        if event_id is not None:
-            return create_card(event_id)
 
 
 if __name__ == '__main__':
